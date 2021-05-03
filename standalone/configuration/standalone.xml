@@ -146,9 +146,25 @@
                         <password>sa</password>
                     </security>
                 </datasource>
+                <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true">                    
+                    <connection-url>jdbc:sqlserver://travilias-keycloak.database.windows.net:1433;DatabaseName=travilias-keycloak;</connection-url>
+                    <driver>sqlserver</driver>
+                    <security> 
+                        <user-name>[USER NAME]</user-name>
+                        <password>[PASSWORD]</password>
+                    </security>
+                    <validation>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>30000</background-validation-millis>
+                    </validation>
+                </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="sqlserver" module="com.microsoft.sqlserver">
+                        <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+                        <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
                     </driver>
                 </drivers>
             </datasources>
